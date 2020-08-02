@@ -35,7 +35,7 @@ class test_JsonFilter(unittest.TestCase):
         jsonFilter = JsonFilter()
         jsonFilter.set_mapstring(mapstring).set_contentstring(json_string)
 
-        returned_result = JsonFilter().filter()
+        returned_result = jsonFilter.filter()
         
         self.assertEqual(returned_result, result)
 
