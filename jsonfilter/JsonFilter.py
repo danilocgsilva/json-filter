@@ -2,6 +2,18 @@ import json
 
 class JsonFilter:
 
-    def filter(self, data_string: str, mapstring: str):
-        dictResult = json.loads(data_string)
-        return eval("dictResult" + mapstring)
+    def __init__(self):
+        self.mapstring = None
+        self.contentstring = None
+
+    def set_mapstring(self, mapstring: str):
+        self.mapstring = mapstring
+        return self
+
+    def set_contentstring(self, contentstring: str):
+        self.contentstring = contentstring
+        return self
+
+    def filter(self):
+        dictResult = json.loads(self.contentstring)
+        return eval("dictResult" + self.mapstring)

@@ -9,14 +9,21 @@ class test_JsonFilter(unittest.TestCase):
         result = "my_value"
         mapstring = '["mykey"]'
         json_string = '{"mykey": "my_value"}'
-        returned_result = JsonFilter().filter(json_string, mapstring)
+
+        jsonFilter = JsonFilter().set_mapstring(mapstring).set_contentstring(json_string)
+        returned_result = jsonFilter.filter()
+
         self.assertEqual(returned_result, result)
 
     def test_filter_simple2(self):
         result = "2"
         mapstring = '["two"]'
         json_string = '{"one" : "1", "two" : "2", "three" : "3"}'
-        returned_result = JsonFilter().filter(json_string, mapstring)
+
+        jsonFilter = JsonFilter()
+        jsonFilter.set_mapstring(mapstring).set_contentstring(json_string)
+        returned_result = jsonFilter.filter()
+
         self.assertEqual(returned_result, result)
 
 
@@ -24,7 +31,12 @@ class test_JsonFilter(unittest.TestCase):
         result = "Ssh from outside"
         mapstring = '["SecurityGroups"][1]["Description"]'
         json_string = self.return_long_json_string()
-        returned_result = JsonFilter().filter(json_string, mapstring)
+
+        jsonFilter = JsonFilter()
+        jsonFilter.set_mapstring(mapstring).set_contentstring(json_string)
+
+        returned_result = JsonFilter().filter()
+        
         self.assertEqual(returned_result, result)
 
 
