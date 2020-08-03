@@ -1,14 +1,14 @@
 import unittest
 import sys
 sys.path.insert(1, "..")
-from jsonfilter.JsonFilterString import JsonFilterString
+from jsonfilter.JsonFilter import JsonFilter
 from tests.LongString import LongString
 
 
 class test_JsonFilterString(unittest.TestCase):
 
     def setUp(self):
-        self.jsonfilter = JsonFilterString()
+        self.jsonfilter = JsonFilter()
 
     def test_filter_simple(self):
 
@@ -51,3 +51,9 @@ class test_JsonFilterString(unittest.TestCase):
         with self.assertRaises(Exception):
             self.jsonfilter.filter()
 
+    def test_filter_list(self):
+        mapstring = '["SecurityGroups"]'
+        json_string = LongString().get_string()
+        self.jsonfilter.set_mapstring(mapstring).set_contentstring(json_string)
+        returned_list = self.jsonfilter.filter_list()
+        self.assertTrue(isinstance(returned_list, list))

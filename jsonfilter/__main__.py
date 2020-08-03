@@ -1,7 +1,6 @@
 import sys
 import re
-from jsonfilter.JsonFilterString import JsonFilterString
-from jsonfilter.JsonFilterList import JsonFilterList
+from jsonfilter.JsonFilter import JsonFilter
 from jsonfilter.Translator import Translator
 
 def main():
@@ -12,18 +11,19 @@ def main():
     if not re.search("\.\.", string_map):
         print(get_filtered_data_single(string_map, data_from_outside, translator))
     else:
-        two_parts = string_map.split('..')
+        print("Still in development")
 
-        part_one = two_parts[0]
-        part_two = two_parts[1]
+        two_parts_string_map = string_map.split("..")
 
-        converted_string = translator.set_humanterm(part_one).translate()
-        json_filter_list = JsonFilterList().set_mapstring(converted_string).set_contentstring(data_from_outside)
-        list_entities = json_filter_list.filter()
-        for entities in list_entities:
-            converted_second_part = translator.set_humanterm(part_two).translate()
-            json_filter_loop = JsonFilterString().set_mapstring(converted_second_part).set_contentstring(entities)
-            print(json_filter_loop.filter())
+        part_one = two_parts_string_map[0]
+        part_two = two_parts_string_map[1]
+
+        part_one_map = translator.set_humanterm(part_one).translate()
+        json_filter = JsonFilter().set_mapstring(part_one_map).set_contentstring(data_from_outside)
+        list_from_first_part = json_filter.filter_list()
+        translated_second_part_filter = translator.set_humanterm(part_two).translate()
+        for list_item in list_from_first_part:
+            print(' * ' + eval("list_item" + translated_second_part_filter))
 
 
 def get_argument_provided_or_die():
@@ -40,5 +40,5 @@ def get_redirected_data():
 
 def get_filtered_data_single(string_map, data_from_outside, translator):
     converted_string = translator.set_humanterm(string_map).translate()
-    json_filter = JsonFilterString().set_mapstring(converted_string).set_contentstring(data_from_outside)
+    json_filter = JsonFilter().set_mapstring(converted_string).set_contentstring(data_from_outside)
     return json_filter.filter()
