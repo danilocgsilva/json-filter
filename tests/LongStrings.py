@@ -1,6 +1,6 @@
-class LongString:
+class LongStrings:
 
-    def get_string(self) -> str:
+    def get_string_longer(self) -> str:
         return '''{
         "SecurityGroups": [
             {
@@ -149,3 +149,21 @@ class LongString:
         ]
     }
     '''
+
+    def get_string_shorter(self):
+        return '''
+        {
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "main-database",
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-abc1234df90",
+                    "Status": "active"
+                }
+            ],
+            "DeletionProtection": true,
+            "AssociatedRoles": []
+        }
+    ]
+}'''

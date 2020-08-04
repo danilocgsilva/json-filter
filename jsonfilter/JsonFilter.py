@@ -19,6 +19,9 @@ class JsonFilter:
         dictResult = json.loads(self.contentstring)
         return eval("dictResult" + self.mapstring)
 
+    def filter_type(self):
+        return type(self.filter_any())
+
     def filter(self) -> str:
         returned_object = self.filter_any()
         if isinstance(returned_object, str):
