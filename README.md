@@ -1,6 +1,6 @@
 # json-filter
 
-Filters the information from complicated json output.
+Filters the information from complicated json output to a more sweet view to us humans. Personally, I used much for filter AWS CLI output long json strings in the output.
 
 This program can help to work with any other program that outputs some json (or even json files).
 
