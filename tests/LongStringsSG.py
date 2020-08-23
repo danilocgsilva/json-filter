@@ -150,7 +150,7 @@ class LongStringsSG:
     }
     '''
 
-    def get_string_shorter(self):
+    def get_string_shorter(self) -> str:
         return '''
         {
     "DBInstances": [
@@ -167,3 +167,31 @@ class LongStringsSG:
         }
     ]
 }'''
+
+    def get_multiple_root_key(self) -> str:
+        return '''{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "main-database",
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-abc1234df90",
+                    "Status": "active"
+                }
+            ],
+            "DeletionProtection": true,
+            "AssociatedRoles": []
+        }
+    ],
+    "Images": [
+        {
+            "Architecture": "i386",
+            "VirtualizationType": "paravirtual"
+        },
+        {
+            "Architecture": "x86_64",
+            "VirtualizationType": "paravirtual"
+        }
+    ]
+}
+'''
