@@ -1,4 +1,4 @@
-class LongStrings:
+class LongStringsSG:
 
     def get_string_longer(self) -> str:
         return '''{
