@@ -1,0 +1,1 @@
+When you do not provide any mapping data, the application may search for top level alternarives.
