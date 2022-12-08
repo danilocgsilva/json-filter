@@ -4,7 +4,6 @@ sys.path.insert(1, "..")
 from jsonfilter.JsonFilter import JsonFilter
 from tests.LongStringsSG import LongStringsSG
 
-
 class test_JsonFilterString(unittest.TestCase):
 
     def setUp(self):

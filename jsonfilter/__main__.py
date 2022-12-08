@@ -14,17 +14,14 @@ def main():
     else:
         string_map_provided(string_map, data_from_outside, translator)
 
-
 def get_argument_provided_or_empty():
     try:
         return sys.argv[1]
     except IndexError:
         return ""
 
-
 def get_redirected_data():
     return sys.stdin.read()
-
 
 def get_filtered_data_single(string_map, data_from_outside, translator):
     converted_string = translator.set_humanterm(string_map).translate()
@@ -33,7 +30,6 @@ def get_filtered_data_single(string_map, data_from_outside, translator):
         return json_filter.filter()
     if json_filter.filter_type().__name__ == list.__name__:
         return json_filter.filter_list()
-
 
 def get_filtered_data_list_property(string_map, translator, data_from_outside) -> str:
     two_parts_string_map = string_map.split("..")
@@ -50,22 +46,19 @@ def get_filtered_data_list_property(string_map, translator, data_from_outside) -
         strint_to_return += ' * ' + eval("list_item" + translated_second_part_filter) + "\n"
     return strint_to_return
 
-
 def get_top(data_from_outside) -> list:
     list_to_return = []
     for k, v in data_from_outside.items():
         list_to_return.append(k)
     return list_to_return
 
-
 def string_map_provided(string_map, data_from_outside, translator):
-    if not re.search("\.\.", string_map):
-        data_to_print = get_filtered_data_single(string_map, data_from_outside, translator)
-    else:
+    if re.search("\.\.", string_map):
         data_to_print = get_filtered_data_list_property(string_map, translator, data_from_outside)
+    else:
+        data_to_print = get_filtered_data_single(string_map, data_from_outside, translator)
 
     print(data_to_print)
-
 
 def string_map_not_provided(data_from_outside, translator):
     results_mapped_top = get_top(json.loads(data_from_outside))
@@ -74,3 +67,6 @@ def string_map_not_provided(data_from_outside, translator):
     for top_result in results_mapped_top:
         print(" * " + top_result)
     exit()
+
+if __name__ == '__main__':
+    main()
